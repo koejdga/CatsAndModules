@@ -1,0 +1,31 @@
+# For more information about this configuration visit
+# https://docs.fastlane.tools/actions/gym/#gymfile
+
+# In general, you can use the options available
+# fastlane gym --help
+
+# Remove the # in front of the line to enable the option
+
+output_directory("./")
+
+scheme("CatsAndModules_SofiiaBudilova")
+
+sdk("iphoneos17.2")
+
+clean(true)
+
+output_directory("./output")    # store the ipa in this folder
+output_name("CatsAndModules_SofiiaBudilova")           # the name of the ipa file
+
+export_options({
+  method: "development",
+#   manifest: {
+#     appURL: "https://google.com",
+#   },
+  thinning: "<thin-for-all-variants>",
+  provisioningProfiles: {
+    "ua.edu.ukma.apple-env.budilova.CatsAndModules-SofiiaBudilova" => "1d613491-c747-433a-81d3-283fb4aa46f4"
+  },
+  signingStyle: "manual",
+  compileBitcode: false
+})

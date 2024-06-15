@@ -1,0 +1,69 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+#     build_app(
+#   scheme: "CatsAndModules_SofiiaBudilova",
+#   export_method: "development",
+#   export_options: {
+#     provisioningProfiles: {
+#       "ua.edu.ukma.apple-env.budilova.CatsAndModules-SofiiaBudilova" => "1d613491-c747-433a-81d3-283fb4aa46f4"
+#     }
+#   }
+# )
+
+    # increment_version_number_in_plist(
+    #   bump_type: 'patch'
+    # )
+    # increment_version_number(
+    #   bump_type: "patch"
+    # )
+
+        # /CatsAndModules_SofiiaBudilova.xcodeproj
+
+
+    # xcodeproj = "/Users/sonyabudilova/Documents/NaUKMA/3_year/robota_v_Apple/CatsAndModules_SofiiaBudilova/CatsAndModules_SofiiaBudilova/CatsAndModules_SofiiaBudilova.xcodeproj"
+
+    # version = get_version_number(xcodeproj: xcodeproj)
+    # puts(version)
+
+    # increment_version_number(version_number: "1.7.6", xcodeproj: xcodeproj)
+    # version = get_version_number(xcodeproj: xcodeproj)
+    # puts(version)
+    # increment_version_number(xcodeproj: xcodeproj, bump_type: "patch")
+
+    # version_number: '1.0.0', 
+    # version = get_version_number(xcodeproj: '/Users/sonyabudilova/Documents/NaUKMA/3_year/robota_v_Apple/CatsAndModules_SofiiaBudilova/CatsAndModules_SofiiaBudilova/CatsAndModules_SofiiaBudilova.xcodeproj', target: 'CatsAndModules_SofiiaBudilova')
+    # puts(version)
+
+default_platform(:ios)
+
+platform :ios do
+  lane :reset_version do
+    increment_version_number_in_xcodeproj(version_number: '1.0.0', xcodeproj: './CatsAndModules_SofiiaBudilova/CatsAndModules_SofiiaBudilova.xcodeproj', target: 'CatsAndModules_SofiiaBudilova')
+  end
+
+  lane :build_and_export do
+    increment_version_number_in_xcodeproj(xcodeproj: './CatsAndModules_SofiiaBudilova/CatsAndModules_SofiiaBudilova.xcodeproj', target: 'CatsAndModules_SofiiaBudilova')
+    gym
+    firebase_app_distribution(service_credentials_file: "../catsandmodules-86e94-8160e5de2ea6.json", 
+    ipa_path: "CatsAndModules_SofiiaBudilova.ipa",
+    release_notes: "Realease on video",
+    testers: "o.frankiv@ukma.edu.ua")
+  end
+
+  lane :take_screenshots do
+    snapshot
+  end
+end
