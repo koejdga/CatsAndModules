@@ -13,7 +13,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool
     {
-        print("push from vscode push push")
+        print("push from vscode push push push push")
         FirebaseApp.configure()
         Crashlytics.crashlytics().setCustomValue(totalTappedRows, forKey: FirebaseKeys.TotalTappedRows.rawValue)
         loadCustomProperties()
