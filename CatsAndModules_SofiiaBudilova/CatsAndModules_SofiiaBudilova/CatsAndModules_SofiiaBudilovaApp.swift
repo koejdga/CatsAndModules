@@ -13,7 +13,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool
     {
-        print("commit")
+        print("push")
         FirebaseApp.configure()
         Crashlytics.crashlytics().setCustomValue(totalTappedRows, forKey: FirebaseKeys.TotalTappedRows.rawValue)
         loadCustomProperties()
